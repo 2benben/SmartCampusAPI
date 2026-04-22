@@ -85,7 +85,7 @@ or causing weird data glitches.
 Basically, by using @Consumes(MediaType.APPLICATION_JSON), I’m
 telling the server to only open the door for JSON
 data. If a client tries to sneak in something
-else like text/plain or application/xml—JAX-RS
+else like text/plain or application/xml JAX-RS
 sees the mismatch and immediately blocks the
 request. Instead of letting the bad data break
 my code, JAX-RS handles the situation
