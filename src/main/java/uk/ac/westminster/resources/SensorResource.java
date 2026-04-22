@@ -44,7 +44,7 @@ public class SensorResource {
         return Response.status(Response.Status.CREATED).entity(sensor).build();
     }
 
-    @Path("/{sensorId}/readings")
+    @Path("/{sensorId}/read")
     public SensorReadingResource getSensorReadings(@PathParam("sensorId") String sensorId) {
         Sensor sensor = DataStore.sensors.get(sensorId);
 
