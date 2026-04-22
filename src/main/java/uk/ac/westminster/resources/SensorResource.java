@@ -58,10 +58,15 @@ public class SensorResource {
     @DELETE
     @Path("/{sensorId}")
     public Response deleteSensor(@PathParam("sensorId") String sensorId) {
-        if (!DataStore.sensors.containsKey(sensorId)) {
-            return Response.status(Response.Status.NOT_FOUND)
-                    .entity("{\"error\": \"Sensor not found\"}")
-                    .build();
+        Sensor sensor = DataStore.sensors.get(sensorId);
+
+        if (sensor == null) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+        String roomId = sensor.getRoomId();
+        Room room = DataStore.rooms.get(roomId);
+        if (room != null) {
+            room.getSensorIds().remove(sensorId);
         }
         DataStore.sensors.remove(sensorId);
         return Response.noContent().build();
