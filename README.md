@@ -203,11 +203,20 @@ The base URL should be http://localhost:8080/api/v1/
 
 **Sample curl commands:**
 
-1. curl -X GET http://localhost:8080/api/v1/rooms
+1. curl GET http://localhost:8080/api/v1/
 
-2. curl -X POST http://localhost:8080/api/v1/rooms \
-   -H "Content-Type: application/json" \
-   -d '{"name": "Library Study Room 4", "capacity": 6}'
-3. curl -X GET http://localhost:8080/api/v1/rooms/1/sensors
-4. curl -X GET http://localhost:8080/api/v1/sensors?type=CO2
-5. curl -X DELETE http://localhost:8080/api/v1/rooms/1
+2. curl POST http://localhost:8080/api/v1/rooms 
+   {
+   "id": "LIB-101",
+   "name": "Library",
+   "capacity": 11
+   }
+3. curl POST http://localhost:8080/api/v1/rooms/1/sensors
+   {
+   "id": "TEMP-54",
+   "type": "Temperature",
+   "status": "ACTIVE",
+   "roomId": "LIB-101"
+   }
+4. curl DELETE http://localhost:8080/api/v1/sensors/TEMP-54
+5. curl DELETE http://localhost:8080/api/v1/rooms/LIB-101
