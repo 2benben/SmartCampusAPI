@@ -54,4 +54,17 @@ public class SensorResource {
 
         return new SensorReadingResource(sensor);
     }
+
+    @DELETE
+    @Path("/{sensorId}")
+    public Response deleteSensor(@PathParam("sensorId") String sensorId) {
+        if (!DataStore.sensors.containsKey(sensorId)) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("{\"error\": \"Sensor not found\"}")
+                    .build();
+        }
+        DataStore.sensors.remove(sensorId);
+        return Response.noContent().build();
+    }
+
 }
